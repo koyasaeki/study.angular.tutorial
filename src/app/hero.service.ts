@@ -14,5 +14,12 @@ export class HeroService {
     return heroes;
   }
 
+  getHero(id: number): Observable<Hero> {
+    // 本来はエラーハンドリングすべき
+    const hero = HEROES.find((h) => h.id === id)!;
+    this.messageService.add(`HeroService: fetched hero id =${id}`);
+    return of(hero);
+  }
+
   constructor(private messageService: MessageService) {}
 }
